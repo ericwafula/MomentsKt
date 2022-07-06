@@ -1,23 +1,18 @@
 package tech.ericwathome.momentskt.model
 
 import org.hibernate.Hibernate
+import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 
 @Entity
 data class Image(
     @Id
-    @SequenceGenerator(
-        name = "image_sequence",
-        sequenceName = "image_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "image_sequence"
-    )
-    val id: Long,
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    val id: String,
     val name: String,
-    @Lob val imgUrl: String
+    val type: String,
+    @Lob val data: ByteArray
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -31,6 +26,6 @@ data class Image(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id , name = $name , imgUrl = $imgUrl )"
+        return this::class.simpleName + "(id = $id , name = $name , type = $type , data = $data )"
     }
 }
