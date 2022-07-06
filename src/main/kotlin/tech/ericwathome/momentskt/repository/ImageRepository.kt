@@ -1,4 +1,7 @@
 package tech.ericwathome.momentskt.repository
 
-interface ImageRepository {
+import org.springframework.data.jpa.repository.JpaRepository
+import tech.ericwathome.momentskt.model.Image
+
+interface ImageRepository : JpaRepository<Image, Long> {
 }
