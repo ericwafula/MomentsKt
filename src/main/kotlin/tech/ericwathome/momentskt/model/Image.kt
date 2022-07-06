@@ -9,7 +9,7 @@ data class Image(
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    val id: String,
+    val id: String? = null,
     val name: String,
     val type: String,
     @Lob val data: ByteArray
